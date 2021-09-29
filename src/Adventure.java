@@ -1,10 +1,8 @@
 import java.util.Scanner;
 
 public class Adventure {
-    int currentRoom;
 
     public static void main(String[] args) {
-        Adventure adventure = new Adventure();
         System.out.println("Welcome to Cave Game!\nType \"Start\" to begin.");
         startCheck();
     }
