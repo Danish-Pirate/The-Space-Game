@@ -6,7 +6,7 @@ public class Adventure {
 
 
     public static void main(String[] args) {
-        //Room objects
+        // Room objects
         Room room1 = new Room(1, "The room is covered in cobwebs", 0, 2, 4, 0);
         Room room2 = new Room(2, "The room is covered in cheese", 0, 3, 0, 1);
         Room room3 = new Room(3, "The room is covered in lava", 0, 0, 6, 2);
@@ -22,10 +22,11 @@ public class Adventure {
         System.out.println("Welcome to Cave Game!\nType \"Start\" to begin.");
         startCheck();
         System.out.println(currentRoom.getRoomDescription());
-        go(currentRoom);
+        go();
 
 
     }
+    // Checks if user typed "start"
     public static void startCheck() {
         Scanner input = new Scanner(System.in);
         boolean typedStart = false;
@@ -41,7 +42,8 @@ public class Adventure {
             }
         }
     }
-    public static void go(Room currentRoom) {
+    // Prompts the user to choose a direction to go to
+    public static void go() {
         Scanner input = new Scanner(System.in);
         System.out.println("Choose the direction you want to go.");
         String goMessage = input.nextLine();
