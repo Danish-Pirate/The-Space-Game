@@ -1,5 +1,3 @@
-package com.game;
-
 public class Room {
   // Attributes
   final private String name;

@@ -1,5 +1,3 @@
-package com.game;
-
 public class Map  {
     static Room currentRoom;
     static Room room1 = new Room("Medbay", "The place is sterile and the beeping of machines can be heard all over.");
@@ -30,6 +28,9 @@ public class Map  {
         room8.setEastRoom(room9);
         room9.setWestRoom(room8);
         room9.setNorthRoom(room6);
+    }
+    public Room getRoom1() {
+        return room1;
     }
 
 }
