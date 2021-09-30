@@ -9,7 +9,7 @@ public class Room {
   private int southRoom;
   private int westRoom;
 
-  //constructor
+  // Constructor
   public Room(int roomNumber, String roomDescription, int northRoom, int eastRoom, int southRoom, int westRoom) {
     this.roomName = roomName;
     this.roomDescription = roomDescription;
@@ -18,6 +18,7 @@ public class Room {
     this.southRoom = southRoom;
     this.westRoom = westRoom;
   }
+  // Getters
   public int getRoomNumber() {
     return this.roomName;
   }
