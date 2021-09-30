@@ -6,6 +6,8 @@ public class Adventure {
         System.out.println("Welcome to Space Game!\nType \"Start\" to begin.");
         Player player = new Player();
         startCheck();
+        System.out.println("You are in " + Map.currentRoom.getName() + ". " + Map.currentRoom.getRoomDescription());
+        System.out.println("Type \"help\" to get help");
         player.move();
     }
     // Checks if user typed "start"
