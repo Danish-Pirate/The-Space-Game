@@ -7,6 +7,9 @@ public class Player {
      Map.currentRoom = Map.room1;
      Scanner input = new Scanner(System.in);
 
+     System.out.println("You are in " + Map.currentRoom.getName() + ". " + Map.currentRoom.getRoomDescription());
+     System.out.println("Type \"help\" to get help");
+
      boolean isGameRunning = true;
      while (isGameRunning) {
          String goMessage = input.nextLine();
