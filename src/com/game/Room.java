@@ -2,41 +2,60 @@ package com.game;
 
 public class Room {
   // Attributes
-  private int roomName;
+  private String name;
   private String roomDescription;
-  private int northRoom;
-  private int eastRoom;
-  private int southRoom;
-  private int westRoom;
+  private Room northRoom;
+  private Room eastRoom;
+  private Room southRoom;
+  private Room westRoom;
 
   // Constructor
-  public Room(int roomNumber, String roomDescription, int northRoom, int eastRoom, int southRoom, int westRoom) {
-    this.roomName = roomName;
+  public Room(String name, String roomDescription) {
+    this.name = name;
     this.roomDescription = roomDescription;
-    this.northRoom = northRoom;
-    this.eastRoom = eastRoom;
-    this.southRoom = southRoom;
-    this.westRoom = westRoom;
-  }
-  // Getters
-  public int getRoomNumber() {
-    return this.roomName;
-  }
-  public String getRoomDescription() {
-    return this.roomDescription;
-  }
-  public int getNorthRoom() {
-    return this.northRoom;
-  }
-  public int getEastRoom() {
-    return this.eastRoom;
-  }
-  public int getSouthRoom() {
-    return this.southRoom;
-  }
-  public int getWestRoom() {
-    return this.westRoom;
   }
 
+  // Getters & Setters
+  public String getName() {
+    return name;
+  }
+
+  public String getRoomDescription() {
+    return roomDescription;
+  }
+
+  public Room getNorthRoom() {
+    return northRoom;
+  }
+
+  public Room getEastRoom() {
+    return eastRoom;
+  }
+
+  public Room getSouthRoom() {
+    return southRoom;
+  }
+
+  public Room getWestRoom() {
+    return westRoom;
+  }
+
+  public void setNorthRoom(Room northRoom) {
+    this.northRoom = northRoom;
+  }
+
+  public void setEastRoom(Room eastRoom) {
+    this.eastRoom = eastRoom;
+  }
+
+  public void setSouthRoom(Room southRoom) {
+    this.southRoom = southRoom;
+  }
+
+  public void setWestRoom(Room westRoom) {
+    this.westRoom = westRoom;
+  }
 }
+
+
 
