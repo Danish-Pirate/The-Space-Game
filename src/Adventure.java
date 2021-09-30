@@ -5,13 +5,15 @@ public class Adventure {
 
         System.out.println("Welcome to Space Game!\nType \"Start\" to begin.");
         Player player = new Player();
-        startCheck();
+        GUI gui = new GUI();
         player.move();
+
     }
     // Checks if user typed "start"
-    public static void startCheck() {
+    public static void start() {
         Scanner input = new Scanner(System.in);
         boolean typedStart = false;
+
         while (!typedStart) {
             String startMessage = input.nextLine();
             startMessage = startMessage.toLowerCase();
