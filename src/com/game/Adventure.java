@@ -19,11 +19,9 @@ public class Adventure {
 
 
         System.out.println("Welcome to Space Game!\nType \"Start\" to begin.");
-
         startCheck();
         createMap();
         startGame();
-
     }
     // Checks if user typed "start"
     public static void startCheck() {
@@ -34,29 +32,42 @@ public class Adventure {
             startMessage = startMessage.toLowerCase();
             startMessage = startMessage.replaceAll(" ", "");
             if (startMessage.equals("start")) {
-                System.out.println("Typed \"Start\"");
                 typedStart = true;
             } else {
                 System.out.println("Didn't type \"Start\", try again.");
             }
         }
     }
-    // Prompts the user to choose a direction to go to
-    public static void go() {
+    // starts the game
+    public static void startGame() {
+        boolean isGameRunning = true;
         currentRoom = room1;
-        boolean thereIsRoom = false;
         Scanner input = new Scanner(System.in);
-        while (!thereIsRoom) {
-            System.out.println("Choose the direction you want to go.");
+        System.out.println("You are in " + currentRoom.getName() + ". " + currentRoom.getRoomDescription());
+        System.out.println("Type \"help\" to get help");
+        while (isGameRunning) {
             String goMessage = input.nextLine();
-            if (goMessage.equals("go north")) {
-                goNorth();
-            } else if (goMessage.equals("go east")) {
-                goEast();
-            } else if (goMessage.equals("go south")) {
-                goSouth();
-            } else if (goMessage.equals("go west")) {
-                goWest();
+            switch (goMessage) {
+                case "go north": goNorth();
+                break;
+                case "go east": goEast();
+                break;
+                case "go south": goSouth();
+                break;
+                case "go west": goWest();
+                break;
+                case "exit": isGameRunning = false;
+                break;
+                case "look":
+                    System.out.println(currentRoom.getRoomDescription());
+                break;
+                case "help":
+                    System.out.println("\"go (north, south, east, west)\" to choose a direction to go." +
+                        "\n\"look\" gives you a description of the room.\n\"exit\" stops the game.");
+                break;
+                default:
+                    System.out.println("Unknown command");
+                break;
             }
         }
     }
