@@ -2,8 +2,8 @@ package com.game;
 
 public class Room {
   // Attributes
-  private String name;
-  private String roomDescription;
+  final private String name;
+  final private String roomDescription;
   private Room northRoom;
   private Room eastRoom;
   private Room southRoom;
