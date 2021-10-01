@@ -1,13 +1,16 @@
 import java.util.Scanner;
 
 public class Player {
+    private Room currentRoom;
 
+    Player player;
  public void move() {
-     new Map();
-     Map.currentRoom = Map.room1;
+     player = new Player();
+     Map map = new Map();
+     player.currentRoom = map.room1;
      Scanner input = new Scanner(System.in);
 
-     System.out.println("You are in " + Map.currentRoom.getName() + ". " + Map.currentRoom.getRoomDescription());
+     System.out.println("You are in " + player.currentRoom.getName() + ". " + player.currentRoom.getRoomDescription());
      System.out.println("Type \"help\" to get help");
 
      boolean isGameRunning = true;
@@ -25,7 +28,7 @@ public class Player {
              case "exit": isGameRunning = false;
                  break;
              case "look":
-                 System.out.println(Map.currentRoom.getRoomDescription());
+                 System.out.println(player.currentRoom.getRoomDescription());
                  break;
              case "help":
                  System.out.println("""
@@ -39,34 +42,34 @@ public class Player {
          }
      }
  }
-    public static void goNorth() {
-        if (Map.currentRoom.getNorthRoom() != null) {
-            Map.currentRoom = Map.currentRoom.getNorthRoom();
-            System.out.println("You are in " + Map.currentRoom.getName() + ". " + Map.currentRoom.getRoomDescription());
+    public void goNorth() {
+        if (player.currentRoom.getNorthRoom() != null) {
+            player.currentRoom = player.currentRoom.getNorthRoom();
+            System.out.println("You are in " + player.currentRoom.getName() + ". " + player.currentRoom.getRoomDescription());
         } else {
             System.out.println("You cannot go that way");
         }
     }
-    public static void goEast() {
-        if (Map.currentRoom.getEastRoom() != null) {
-            Map.currentRoom = Map.currentRoom.getEastRoom();
-            System.out.println("You are in " + Map.currentRoom.getName() + ". " + Map.currentRoom.getRoomDescription());
+    public void goEast() {
+        if (player.currentRoom.getEastRoom() != null) {
+            player.currentRoom = player.currentRoom.getEastRoom();
+            System.out.println("You are in " + player.currentRoom.getName() + ". " + player.currentRoom.getRoomDescription());
         } else {
             System.out.println("You cannot go that way");
         }
     }
-    public static void goSouth() {
-        if (Map.currentRoom.getSouthRoom() != null) {
-            Map.currentRoom = Map.currentRoom.getSouthRoom();
-            System.out.println("You are in " + Map.currentRoom.getName() + ". " + Map.currentRoom.getRoomDescription());
+    public void goSouth() {
+        if (player.currentRoom.getSouthRoom() != null) {
+            player.currentRoom = player.currentRoom.getSouthRoom();
+            System.out.println("You are in " + player.currentRoom.getName() + ". " + player.currentRoom.getRoomDescription());
         } else {
             System.out.println("You cannot go that way");
         }
     }
-    public static void goWest() {
-        if (Map.currentRoom.getWestRoom() != null) {
-            Map.currentRoom = Map.currentRoom.getWestRoom();
-            System.out.println("You are in " + Map.currentRoom.getName() + ". " + Map.currentRoom.getRoomDescription());
+    public void goWest() {
+        if (player.currentRoom.getWestRoom() != null) {
+            player.currentRoom = player.currentRoom.getWestRoom();
+            System.out.println("You are in " + player.currentRoom.getName() + ". " + player.currentRoom.getRoomDescription());
         } else {
             System.out.println("You cannot go that way");
         }
