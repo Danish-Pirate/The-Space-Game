@@ -29,8 +29,4 @@ public class Map  {
         room9.setWestRoom(room8);
         room9.setNorthRoom(room6);
     }
-    public Room getRoom1() {
-        return room1;
-    }
-
 }

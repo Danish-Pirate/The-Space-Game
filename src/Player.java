@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Player {
 
  public void move() {
-     Map mapCreator = new Map();
+     new Map();
      Map.currentRoom = Map.room1;
      Scanner input = new Scanner(System.in);
 

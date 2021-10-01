@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Adventure {
     public static void main(String[] args) {
 
-        System.out.println(ConsoleColors.RED_BOLD + "Welcome to Space Game!\nType \"Start\" to begin.");
+        System.out.println("Welcome to Space Game!\nType \"Start\" to begin.");
         Player player = new Player();
         start();
         player.move();
