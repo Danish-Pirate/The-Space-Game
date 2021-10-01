@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class Adventure {
     public static void main(String[] args) {
 
-        System.out.println("Welcome to Space Game!\nType \"Start\" to begin.");
+        System.out.println(ConsoleColors.RED_BOLD + "Welcome to Space Game!\nType \"Start\" to begin.");
         Player player = new Player();
-        GUI gui = new GUI();
+        start();
         player.move();
 
     }
