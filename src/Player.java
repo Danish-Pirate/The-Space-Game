@@ -13,20 +13,17 @@ public class Player {
      System.out.println("You are in " + player.currentRoom.getName() + ". " + player.currentRoom.getRoomDescription());
      System.out.println("Type \"help\" to get help");
 
+     //Commands
      boolean isGameRunning = true;
      while (isGameRunning) {
          String goMessage = input.nextLine();
+         goMessage = goMessage.toLowerCase();
          switch (goMessage) {
-             case "go north": goNorth();
-                 break;
-             case "go east": goEast();
-                 break;
-             case "go south": goSouth();
-                 break;
-             case "go west": goWest();
-                 break;
-             case "exit": isGameRunning = false;
-                 break;
+             case "go north", "north", "go n", "n": goNorth(); break;
+             case "go east", "east", "go e", "e": goEast(); break;
+             case "go south", "south", "go s", "s": goSouth(); break;
+             case "go west", "west", "go w", "w": goWest(); break;
+             case "exit": isGameRunning = false; break;
              case "look":
                  System.out.println(player.currentRoom.getRoomDescription());
                  break;
