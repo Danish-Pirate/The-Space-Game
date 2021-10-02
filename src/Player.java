@@ -18,9 +18,9 @@ public class Player {
      //Commands
      boolean isGameRunning = true;
      while (isGameRunning) {
-         String goMessage = input.nextLine();
-         goMessage = goMessage.toLowerCase();
-         switch (goMessage) {
+         String command = input.nextLine();
+         command = command.toLowerCase();
+         switch (command) {
              case "go north", "north", "go n", "n": goNorth(); break;
              case "go east", "east", "go e", "e": goEast(); break;
              case "go south", "south", "go s", "s": goSouth(); break;
