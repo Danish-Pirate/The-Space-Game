@@ -1,58 +1,59 @@
 public class Room {
-  // Attributes
-  final private String name;
-  final private String roomDescription;
-  private Room northRoom;
-  private Room eastRoom;
-  private Room southRoom;
-  private Room westRoom;
 
-  // Constructor
-  public Room(String name, String roomDescription) {
-    this.name = name;
-    this.roomDescription = roomDescription;
-  }
+    // Attributes
+    final private String name;
+    final private String roomDescription;
+    private Room northRoom;
+    private Room eastRoom;
+    private Room southRoom;
+    private Room westRoom;
 
-  // Getters & Setters
-  public String getName() {
-    return name;
-  }
+    // Constructor
+    public Room(String name, String roomDescription) {
+        this.name = name;
+        this.roomDescription = roomDescription;
+    }
 
-  public String getRoomDescription() {
-    return roomDescription;
-  }
+    // Getters & Setters
+    public String getName() {
+        return name;
+    }
 
-  public Room getNorthRoom() {
-    return northRoom;
-  }
+    public String getRoomDescription() {
+        return roomDescription;
+    }
 
-  public Room getEastRoom() {
-    return eastRoom;
-  }
+    public Room getNorthRoom() {
+        return northRoom;
+    }
 
-  public Room getSouthRoom() {
-    return southRoom;
-  }
+    public Room getEastRoom() {
+        return eastRoom;
+    }
 
-  public Room getWestRoom() {
-    return westRoom;
-  }
+    public Room getSouthRoom() {
+        return southRoom;
+    }
 
-  public void setNorthRoom(Room northRoom) {
-    this.northRoom = northRoom;
-  }
+    public Room getWestRoom() {
+        return westRoom;
+    }
 
-  public void setEastRoom(Room eastRoom) {
-    this.eastRoom = eastRoom;
-  }
+    public void setNorthRoom(Room northRoom) {
+        this.northRoom = northRoom;
+    }
 
-  public void setSouthRoom(Room southRoom) {
-    this.southRoom = southRoom;
-  }
+    public void setEastRoom(Room eastRoom) {
+        this.eastRoom = eastRoom;
+    }
 
-  public void setWestRoom(Room westRoom) {
-    this.westRoom = westRoom;
-  }
+    public void setSouthRoom(Room southRoom) {
+        this.southRoom = southRoom;
+    }
+
+    public void setWestRoom(Room westRoom) {
+        this.westRoom = westRoom;
+    }
 }
 
 

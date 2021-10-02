@@ -1,9 +1,11 @@
 import java.util.Scanner;
 
 public class Player {
+    //Attributes
     private Room currentRoom;
-
     Player player;
+
+ // Handles player movement and commands
  public void move() {
      player = new Player();
      Map map = new Map();
