@@ -1,3 +1,5 @@
+package Game;
+
 public enum Command {
     HELP, EXIT, LOOK, UNKNOWN;
 

@@ -1,4 +1,4 @@
-import java.util.Scanner;
+package Game;
 
 
 public enum Direction {

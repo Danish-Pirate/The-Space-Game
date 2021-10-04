@@ -1,3 +1,5 @@
+package Game;
+
 public class Room {
 
     // Attributes
@@ -41,18 +43,22 @@ public class Room {
 
     public void setNorthRoom(Room northRoom) {
         this.northRoom = northRoom;
+        northRoom.setSouthRoom(this);
     }
 
     public void setEastRoom(Room eastRoom) {
         this.eastRoom = eastRoom;
+        westRoom.setEastRoom(this);
     }
 
     public void setSouthRoom(Room southRoom) {
         this.southRoom = southRoom;
+        southRoom.setNorthRoom(this);
     }
 
     public void setWestRoom(Room westRoom) {
         this.westRoom = westRoom;
+        westRoom.setEastRoom(this);
     }
 }
 
