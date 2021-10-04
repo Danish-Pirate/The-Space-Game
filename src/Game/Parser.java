@@ -28,16 +28,12 @@ public class Parser {
        }
       } else {
         Command command = Command.getCommand(consoleInput);
-        if (command == Command.HELP) {
-          help();
-        } else if (command == Command.LOOK) {
-          look();
-        } else if (command == Command.EXIT) {
-          exit();
-        } else if(command == Command.STOP) {
-          music.stopMusic();
-        } else {
-          System.out.println("Invalid command, try again.");
+        switch (command) {
+          case HELP -> help();
+          case LOOK -> look();
+          case EXIT -> exit();
+          case STOP -> stopMusic();
+          default -> System.out.println("Invalid command, try again.");
         }
       }
     }
@@ -95,5 +91,8 @@ public class Parser {
   }
   public void exit() {
     Adventure.exitGame();
+  }
+  public void stopMusic() {
+    music.stopMusic();
   }
 }
