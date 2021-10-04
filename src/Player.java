@@ -7,13 +7,37 @@ public class Player {
 
  // Handles player movement and commands
  public void move() {
-     player = new Player();
      Map map = new Map();
-     player.currentRoom = map.room1;
+     player = new Player();
      Scanner input = new Scanner(System.in);
+     player.currentRoom = map.room1;
      System.out.println("You are in " + player.currentRoom.getName() + ". " + player.currentRoom.getRoomDescription());
-     System.out.println("Type \"help\" to get help");
+     System.out.println("Type \"help\" for a list of commands");
 
+     while(true) {
+         String consoleInput = input.nextLine();
+         Direction commandDirection = Direction.getDirection(consoleInput);
+         if (commandDirection == Direction.NORTH) {
+             goNorth();
+         } else if (commandDirection == Direction.SOUTH) {
+             goSouth();
+         } else if (commandDirection == Direction.EAST) {
+             goEast();
+         } else if (commandDirection == Direction.WEST) {
+             goWest();
+         } else {
+             Command command = Command.getCommand(consoleInput);
+             if (command == Command.HELP) {
+                 help();
+             } else if (command == Command.LOOK) {
+                 look();
+             } else if (command == Command.EXIT) {
+                 exit();
+             } else {
+                 System.out.println("Invalid command, try again.");
+             }
+         }
+     }
 
  }
     public void goNorth() {
@@ -47,5 +71,14 @@ public class Player {
         } else {
             System.out.println("You cannot go that way");
         }
+    }
+    public void help() {
+        System.out.println("\"go (north, south, east, west)\", \"look\", \"exit\".");
+    }
+    public void look() {
+        System.out.println(player.currentRoom.getRoomDescription());
+    }
+    public void exit() {
+     Adventure.exitGame();
     }
 }

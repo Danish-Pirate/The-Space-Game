@@ -1,28 +1,15 @@
-import java.util.Scanner;
 
 public class Adventure {
-    public static void main(String[] args) {
 
-        System.out.println("Welcome to Space Game!\nType \"Start\" to begin.");
-        Player player = new Player();
-        start();
-        player.move();
+    public static void main(String[] args) throws InterruptedException {
 
+            Player player = new Player();
+            System.out.println("Welcome to Space Game!");
+            Thread.sleep(3000);
+            player.move();
     }
-    // Checks if user typed "start"
-    public static void start() {
-        Scanner input = new Scanner(System.in);
-        boolean typedStart = false;
-
-        while (!typedStart) {
-            String startMessage = input.nextLine();
-            startMessage = startMessage.toLowerCase();
-            startMessage = startMessage.replaceAll(" ", "");
-            if (startMessage.equals("start")) {
-                typedStart = true;
-            } else {
-                System.out.println("Didn't type \"Start\", try again.");
-            }
-        }
+    // Exits the game
+    public static void exitGame () {
+        System.exit(0);
     }
 }
