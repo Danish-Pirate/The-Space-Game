@@ -43,22 +43,22 @@ public class Room {
 
     public void setNorthRoom(Room northRoom) {
         this.northRoom = northRoom;
-        northRoom.setSouthRoom(this);
+        northRoom.southRoom = this;
     }
 
     public void setEastRoom(Room eastRoom) {
         this.eastRoom = eastRoom;
-        westRoom.setEastRoom(this);
+        eastRoom.westRoom = this;
     }
 
     public void setSouthRoom(Room southRoom) {
         this.southRoom = southRoom;
-        southRoom.setNorthRoom(this);
+        southRoom.northRoom = this;
     }
 
     public void setWestRoom(Room westRoom) {
         this.westRoom = westRoom;
-        westRoom.setEastRoom(this);
+        westRoom.eastRoom = this;
     }
 }
 
