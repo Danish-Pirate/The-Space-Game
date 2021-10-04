@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 
 public enum Direction {
-    NORTH, SOUTH, WEST, EAST, UNKNOWN;
+    NORTH, SOUTH, WEST, EAST;
 
     public static void main(String[] args) {
         input();
