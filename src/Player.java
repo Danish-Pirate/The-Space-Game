@@ -11,35 +11,10 @@ public class Player {
      Map map = new Map();
      player.currentRoom = map.room1;
      Scanner input = new Scanner(System.in);
-
      System.out.println("You are in " + player.currentRoom.getName() + ". " + player.currentRoom.getRoomDescription());
      System.out.println("Type \"help\" to get help");
 
-     //Commands
-     boolean isGameRunning = true;
-     while (isGameRunning) {
-         String command = input.nextLine();
-         command = command.toLowerCase();
-         switch (command) {
-             case "go north", "north", "go n", "n": goNorth(); break;
-             case "go east", "east", "go e", "e": goEast(); break;
-             case "go south", "south", "go s", "s": goSouth(); break;
-             case "go west", "west", "go w", "w": goWest(); break;
-             case "exit": isGameRunning = false; break;
-             case "look":
-                 System.out.println(player.currentRoom.getRoomDescription());
-                 break;
-             case "help":
-                 System.out.println("""
-                            "go (north, south, east, west)" to choose a direction to go.
-                            "look" gives you a description of the room.
-                            "exit" stops the game.""");
-                 break;
-             default:
-                 System.out.println("Unknown command");
-                 break;
-         }
-     }
+
  }
     public void goNorth() {
         if (player.currentRoom.getNorthRoom() != null) {
