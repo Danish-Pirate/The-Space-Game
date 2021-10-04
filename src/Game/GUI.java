@@ -10,6 +10,10 @@ import java.awt.event.KeyListener;
 public class GUI {
     String input;
     JLabel message;
+
+    public static void main(String[] args) {
+        GUI gui = new GUI();
+    }
     public GUI() {
         JFrame frame = new JFrame("SPACE GAME");
 
