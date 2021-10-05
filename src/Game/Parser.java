@@ -65,7 +65,7 @@ public class Parser {
     NORTH, SOUTH, WEST, EAST, UNKNOWN;
 
     public static Direction getDirection(String direction) {
-      try {
+
         direction = direction.toLowerCase();
         if (direction.matches("go\s+[n]|go\s+north|north|[n]")) {
           return NORTH;
@@ -76,11 +76,8 @@ public class Parser {
         } else if (direction.matches("go\s+[e]|go\s+east|east|[e]")) {
           return EAST;
         } else {
-          throw new IllegalArgumentException();
+          return UNKNOWN;
         }
-      } catch (IllegalArgumentException unknownCommand) {
-        return UNKNOWN;
-      }
     }
   }
   public void help() {

@@ -43,21 +43,41 @@ public class Room {
 
     public void setNorthRoom(Room northRoom) {
         this.northRoom = northRoom;
-        northRoom.southRoom = this;
     }
 
     public void setEastRoom(Room eastRoom) {
         this.eastRoom = eastRoom;
-        eastRoom.westRoom = this;
     }
 
     public void setSouthRoom(Room southRoom) {
         this.southRoom = southRoom;
-        southRoom.northRoom = this;
     }
 
     public void setWestRoom(Room westRoom) {
         this.westRoom = westRoom;
+    }
+
+    public void connectNorthRoom(Room northRoom) {
+        setNorthRoom(northRoom);
+        if(northRoom.southRoom == null)
+            northRoom.southRoom = this;
+    }
+
+    public void connectEastRoom(Room eastRoom) {
+        setEastRoom(eastRoom);
+        if(eastRoom.westRoom == null)
+        eastRoom.westRoom = this;
+    }
+
+    public void connectSouthRoom(Room southRoom) {
+        setSouthRoom(southRoom);
+        if(southRoom.northRoom == null)
+        southRoom.northRoom = this;
+    }
+
+    public void connectWestRoom(Room westRoom) {
+        setWestRoom(westRoom);
+        if(westRoom.eastRoom == null)
         westRoom.eastRoom = this;
     }
 }

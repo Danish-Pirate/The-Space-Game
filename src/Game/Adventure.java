@@ -2,11 +2,15 @@ package Game;
 
 public class Adventure {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
             System.out.println("Welcome to Space Game!");
-            Thread.sleep(3000);
-            Parser parser = new Parser();
+      try {
+        Thread.sleep(3000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      Parser parser = new Parser();
             parser.gameStart();
     }
     // Exits the game
