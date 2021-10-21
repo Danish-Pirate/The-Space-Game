@@ -9,10 +9,10 @@ public class Music {
     Clip clip;
 
     public Music() {
-        playMusic("SPACE_EXPLORE.wav");
+        startMusic("SPACE_EXPLORE.wav");
     }
 
-    public void playMusic(String musicLocation) {
+    public void startMusic(String musicLocation) {
         try {
             File musicPath = new File(musicLocation);
             if (musicPath.exists()) {
@@ -30,5 +30,9 @@ public class Music {
     }
     public void stopMusic() {
         clip.stop();
+    }
+    public void playMusic () {
+        clip.stop();
+        startMusic("SPACE_EXPLORE.wav");
     }
 }

@@ -2,27 +2,37 @@ package Game;
 
 import java.util.Scanner;
 
-public class Parser {
-  Player player;
-  Map map;
-  Music music;
+public class Game {
+ private boolean gameIsRunning = true;
+ private Player player;
+  private Map map;
+  private Music music;
 
-  public void gameStart() {
+  public void start() {
     map = new Map();
     player = new Player();
     music = new Music();
+
+    System.out.println("Welcome to Space Game!");
+    try {
+      Thread.sleep(3000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
 
     Scanner input = new Scanner(System.in);
     player.setCurrentRoom(map.getStarterRoom());
     System.out.println("You are in " + player.getCurrentRoom().getName() + ". " + player.getCurrentRoom().getRoomDescription());
     System.out.println("Type \"help\" for a list of commands");
 
-    while(true) {
+    while(gameIsRunning) {
       String consoleInput = input.nextLine();
       Direction commandDirection = Direction.getDirection(consoleInput);
-      if (commandDirection == Direction.NORTH|commandDirection == Direction.SOUTH|commandDirection == Direction.EAST|commandDirection == Direction.WEST) {
+      if (commandDirection == Direction.NORTH|commandDirection == Direction.SOUTH|
+          commandDirection == Direction.EAST|commandDirection == Direction.WEST) {
        if(player.go(commandDirection)) {
-         System.out.println("You are in " + player.getCurrentRoom().getName() + ". " + player.getCurrentRoom().getRoomDescription());
+         System.out.println("You are in " + player.getCurrentRoom().getName() + ". "
+             + player.getCurrentRoom().getRoomDescription());
        } else {
          System.out.println("You cannot go that way");
        }
@@ -33,6 +43,7 @@ public class Parser {
           case LOOK -> look();
           case EXIT -> exit();
           case STOP -> stopMusic();
+          case START -> playMusic();
           default -> System.out.println("Invalid command, try again.");
         }
       }
@@ -40,7 +51,7 @@ public class Parser {
   }
 
   public enum Command {
-    HELP, EXIT, LOOK, STOP, UNKNOWN;
+    HELP, EXIT, LOOK, STOP, START, UNKNOWN;
 
     public static Command getCommand (String command) {
       command = command.toLowerCase();
@@ -55,6 +66,9 @@ public class Parser {
       }
       else if(command.matches("stop\s+music|stop\s+[m]")) {
         return STOP;
+      }
+      else if (command.matches("start\s+music|start\s+[m]")) {
+        return START;
       }
       else {
         return UNKNOWN;
@@ -81,15 +95,18 @@ public class Parser {
     }
   }
   public void help() {
-    System.out.println("\"go (north, south, east, west)\", \"look\", \"exit\", \"stop music\".");
+    System.out.println("\"go (north, south, east, west)\" - Makes you go to a certain direction\n\"look\" - Gives you a description of the room\n\"exit\" - Exits the game\"stop music\" - Stops the game music\n\"start music\" - Starts the game music");
   }
   public void look() {
     System.out.println(player.getCurrentRoom().getRoomDescription());
   }
   public void exit() {
-    Adventure.exitGame();
+    gameIsRunning = false;
   }
   public void stopMusic() {
     music.stopMusic();
+  }
+  public void playMusic() {
+    music.playMusic();
   }
 }

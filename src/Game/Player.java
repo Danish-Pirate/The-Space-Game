@@ -5,7 +5,7 @@ public class Player {
     private Room currentRoom;
 
     // Handles player movement and commands
-    public boolean go(Parser.Direction direction) {
+    public boolean go(Game.Direction direction) {
         Room requestRoom = switch (direction) {
             case NORTH -> currentRoom.getNorthRoom();
             case SOUTH -> currentRoom.getSouthRoom();
