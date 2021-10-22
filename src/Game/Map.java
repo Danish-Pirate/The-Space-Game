@@ -2,7 +2,7 @@ package Game;
 
 public class Map {
 
-   Room starterRoom;
+  private Room starterRoom;
     //Connects the rooms together
     public Map() {
 

@@ -3,15 +3,12 @@ package Game;
 import java.util.Scanner;
 
 public class Game {
- private boolean gameIsRunning = true;
- private Player player;
-  private Map map;
-  private Music music;
+  private boolean gameIsRunning = true;
+  private Player player = new Player();
+  private Map map = new Map();
+  private Music music = new Music();
 
   public void start() {
-    map = new Map();
-    player = new Player();
-    music = new Music();
 
     System.out.println("Welcome to Space Game!");
     try {
