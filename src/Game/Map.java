@@ -7,8 +7,11 @@ public class Map {
     public Map() {
 
         // Creates the room objects
-        Item lamp = new Item("Shiny Lamp");
-        Item bow = new Item("Bow");
+        Item flashlight = new Item("Flashlight");
+        Item blaster = new Item("Blaster");
+        Item can_of_food = new Item("Can of Food");
+        Item red_keycard = new Item("Red Keycard");
+
         Room room1 = new Room("Medbay", "The place is sterile and the beeping of machines can be heard all over.");
         Room room2 = new Room("Shield Generator", "The shield generator seems to be doing its job of a producing a shield.");
         Room room3 = new Room("Hyperspace Drive", "The hyperspace drive is broken. Without it, warp speed travel is impossible.");
@@ -19,8 +22,10 @@ public class Map {
         Room room8 = new Room("Bunks", "Members of the crew sleep here. Looks like no one made their bed.");
         Room room9 = new Room("Engine", "The engine is responsible for the ship's propulsion, it's deafening.");
 
-        room1.getInventory().add(lamp);
-        room1.getInventory().add(bow);
+        room1.getInventory().add(flashlight);
+        room5.getInventory().add(blaster);
+        room3.getInventory().add(can_of_food);
+        room6.getInventory().add(red_keycard);
 
         room1.connectEastRoom(room2);
         room1.connectSouthRoom(room4);

@@ -48,7 +48,7 @@ public class Game {
        else {
          System.out.println("No such item in the room!");
        }
-    } else if (command.matches("drop(\\s\\w+){1,3}$")) {
+    } else if (command.matches("drop(\\s\\w+){1,4}$")) {
       if (player.dropItem(command)) {
         System.out.println("Item dropped!");
       } else {
@@ -57,8 +57,9 @@ public class Game {
     }
     else if (command.matches("inv|invent|inventory")) {
       if (player.checkInventory() != null) {
+        System.out.println("There following items are in your inventory:");
         for (int i = 0; i < player.checkInventory().size(); i++) {
-          System.out.println(player.checkInventory().get(i));
+          System.out.print(player.checkInventory().get(i) + ", ");
         }
       } else {
         System.out.println("No items in your inventory!");
@@ -95,7 +96,10 @@ public class Game {
   }
 
   public void help() {
-    System.out.println("\"go (north, south, east, west)\" - Makes you go to a certain direction\n\"look\" - Gives you a description of the room\n\"exit\" - Exits the game\"stop music\" - Stops the game music\n\"start music\" - Starts the game music");
+    System.out.println("\"go (north, south, east, west)\" - Makes you go to a certain direction\n\"look\"" +
+            " - Gives you a description of the room\n\"exit\"" +
+            " - Exits the game\"stop music\" - Stops the game music\n\"start music\"" +
+            " - Starts the game music\n\"take/drop (folowed by item name)\" - picks up and drops things.\n\"inventory\" - checks inventory");
   }
 
   public void look() {
