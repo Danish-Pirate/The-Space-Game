@@ -43,6 +43,7 @@ public class Game {
     command = command.toLowerCase();
     if (command.matches("take(\\s\\w+){1,3}$")) {
        if (player.pickupItem(command)) {
+         music.playItemPickUpSound();
          System.out.println("Item taken!");
        }
        else {
@@ -50,6 +51,7 @@ public class Game {
        }
     } else if (command.matches("drop(\\s\\w+){1,4}$")) {
       if (player.dropItem(command)) {
+        music.playItemDropSound();
         System.out.println("Item dropped!");
       } else {
         System.out.println("No such item in your inventory!");

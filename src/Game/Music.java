@@ -28,11 +28,44 @@ public class Music {
             e.printStackTrace();
         }
     }
+
     public void stopMusic() {
         clip.stop();
     }
-    public void playMusic () {
+
+    public void playMusic() {
         clip.stop();
         startMusic("src/Game/SPACE_EXPLORE.wav");
+    }
+
+    public void playItemPickUpSound() {
+        try {
+            File musicPath = new File("src/Game/ITEMPICKUP.wav");
+            if (musicPath.exists()) {
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+                clip = AudioSystem.getClip();
+                clip.open(audioInput);
+                clip.start();
+            } else {
+                System.out.println("Can't find file.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void playItemDropSound () {
+        try {
+            File musicPath = new File("src/Game/ITEMDROP.wav");
+            if (musicPath.exists()) {
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+                clip = AudioSystem.getClip();
+                clip.open(audioInput);
+                clip.start();
+            } else {
+                System.out.println("Can't find file.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
