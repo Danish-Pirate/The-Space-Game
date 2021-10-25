@@ -7,8 +7,6 @@ public class Game {
   private Player player = new Player();
   private Map map = new Map();
   private Music music = new Music();
-  private InventoryManager inv = new InventoryManager();
-
   public void start() {
 
     System.out.println("Welcome to Space Game!");
@@ -44,21 +42,27 @@ public class Game {
   public void getCommand(String command) {
     command = command.toLowerCase();
     if (command.matches("take(\\s\\w+){1,3}$")) {
-       if (inv.pickupItem(player, command)) {
+       if (player.pickupItem(command)) {
          System.out.println("Item taken!");
        }
        else {
          System.out.println("No such item in the room!");
        }
     } else if (command.matches("drop(\\s\\w+){1,3}$")) {
-      if (inv.dropItem(player, command)) {
+      if (player.dropItem(command)) {
         System.out.println("Item dropped!");
       } else {
         System.out.println("No such item in your inventory!");
       }
     }
     else if (command.matches("inv|invent|inventory")) {
-      inv.checkInv(player);
+      if (player.checkInventory() != null) {
+        for (int i = 0; i < player.checkInventory().size(); i++) {
+          System.out.println(player.checkInventory().get(i));
+        }
+      } else {
+        System.out.println("No items in your inventory!");
+      }
     } else if (command.matches("help|[h]")) {
       help();
     } else if (command.matches("look|l")) {

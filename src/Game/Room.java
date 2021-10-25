@@ -88,6 +88,23 @@ public class Room {
     return inventory;
   }
 
+  public Item getItem(String itemName) {
+    for (int i = 0; i < inventory.size(); i++) {
+      if (itemName.equals(inventory.get(i).getName().toLowerCase())) {
+        return inventory.get(i);
+      }
+    }
+    return null;
+  }
+
+  public void addItem(Item item) {
+    inventory.add(item);
+  }
+
+  public void removeItem(Item item) {
+    inventory.remove(item);
+  }
+
   public void printRoomAndItems() {
     System.out.println(roomDescription);
     if (inventory.size() != 0) {
