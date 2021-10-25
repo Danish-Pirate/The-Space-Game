@@ -1,11 +1,14 @@
 package Game;
 
+import java.util.ArrayList;
+
 public class Player {
     //Attributes
     private Room currentRoom;
+    private ArrayList<Item> inventory = new ArrayList<>();
 
     // Handles player movement and commands
-    public boolean go(Game.Direction direction) {
+    public boolean go(Directions direction) {
         Room requestRoom = switch (direction) {
             case NORTH -> currentRoom.getNorthRoom();
             case SOUTH -> currentRoom.getSouthRoom();
@@ -27,5 +30,9 @@ public class Player {
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
     }
 }
