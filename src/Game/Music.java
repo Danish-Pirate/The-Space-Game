@@ -6,10 +6,11 @@ import javax.sound.sampled.Clip;
 import java.io.File;
 
 public class Music {
-    Clip clip;
+    Clip clip1;
+    Clip clip2;
 
     public Music() {
-        startMusic("src/Game/SPACE_EXPLORE.wav");
+        playMusic();
     }
 
     public void startMusic(String musicLocation) {
@@ -17,55 +18,51 @@ public class Music {
             File musicPath = new File(musicLocation);
             if (musicPath.exists()) {
                 AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-                clip = AudioSystem.getClip();
-                clip.open(audioInput);
-                clip.start();
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
+                clip1 = AudioSystem.getClip();
+                clip1.open(audioInput);
+                clip1.loop(Clip.LOOP_CONTINUOUSLY);
             } else {
                 System.out.println("Can't find file.");
             }
-        } catch (Exception e) {
+        } catch (
+                Exception e) {
             e.printStackTrace();
         }
     }
 
     public void stopMusic() {
-        clip.stop();
+        clip1.close();
     }
 
     public void playMusic() {
-        clip.stop();
+        if (clip1 != null) {
+            clip1.stop();
+        }
         startMusic("src/Game/SPACE_EXPLORE.wav");
     }
 
-    public void playItemPickUpSound() {
+    public void playGameSounds(String musicLocation) {
         try {
-            File musicPath = new File("src/Game/ITEMPICKUP.wav");
+            File musicPath = new File(musicLocation);
             if (musicPath.exists()) {
                 AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-                clip = AudioSystem.getClip();
-                clip.open(audioInput);
-                clip.start();
+                clip2 = AudioSystem.getClip();
+                clip2.open(audioInput);
+                clip2.start();
             } else {
                 System.out.println("Can't find file.");
             }
-        } catch (Exception e) {
+        } catch (
+                Exception e) {
             e.printStackTrace();
         }
     }
-    public void playItemDropSound () {
-        try {
-            File musicPath = new File("src/Game/ITEMDROP.wav");
-            if (musicPath.exists()) {
-                AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
-                clip = AudioSystem.getClip();
-                clip.open(audioInput);
-                clip.start();
-            } else {
-                System.out.println("Can't find file.");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+    public void playItemPickUpSound() {
+        playGameSounds("src/Game/ITEMPICKUP.wav");
+    }
+
+    public void playItemDropSound() {
+        playGameSounds("src/Game/ITEMDROP.wav");
     }
 }

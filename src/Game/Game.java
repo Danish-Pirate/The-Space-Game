@@ -69,13 +69,13 @@ public class Game {
     } else if (command.matches("help|[h]")) {
       help();
     } else if (command.matches("look|l")) {
-      look();
+      player.look();
     } else if (command.matches("exit")) {
       exit();
     } else if (command.matches("stop\s+music|stop\s+[m]")) {
-      stopMusic();
+      music.stopMusic();
     } else if (command.matches("start\s+music|start\s+[m]")) {
-      playMusic();
+      music.playMusic();
     } else {
       System.out.println("Invalid command, try again");
     }
@@ -104,19 +104,8 @@ public class Game {
             " - Starts the game music\n\"take/drop (folowed by item name)\" - picks up and drops things.\n\"inventory\" - checks inventory");
   }
 
-  public void look() {
-    player.look();
-  }
-
   public void exit() {
     gameIsRunning = false;
   }
 
-  public void stopMusic() {
-    music.stopMusic();
-  }
-
-  public void playMusic() {
-    music.playMusic();
-  }
 }
