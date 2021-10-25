@@ -18,8 +18,8 @@ public class Game {
 
     Scanner input = new Scanner(System.in);
     player.setCurrentRoom(map.getStarterRoom());
-    System.out.print("You are in " + player.getCurrentRoom().getName() + ". ");
-    player.getCurrentRoom().printRoomAndItems();
+    System.out.print("You are in " + player.getCurrentRoomName() + ". ");
+    player.look();
     System.out.println("\nType \"help\" for a list of commands");
 
     while (gameIsRunning) {
@@ -28,8 +28,8 @@ public class Game {
       if (commandDirection == Directions.NORTH | commandDirection == Directions.SOUTH |
           commandDirection == Directions.EAST | commandDirection == Directions.WEST) {
         if (player.go(commandDirection)) {
-          System.out.print("You are in " + player.getCurrentRoom().getName() + ". ");
-          player.getCurrentRoom().printRoomAndItems();
+          System.out.print("You are in " + player.getCurrentRoomName() + ". ");
+          player.look();
         } else {
           System.out.println("You cannot go that way");
         }
@@ -98,12 +98,12 @@ public class Game {
   public void help() {
     System.out.println("\"go (north, south, east, west)\" - Makes you go to a certain direction\n\"look\"" +
             " - Gives you a description of the room\n\"exit\"" +
-            " - Exits the game\"stop music\" - Stops the game music\n\"start music\"" +
+            " - Exits the game\n\"stop music\" - Stops the game music\n\"start music\"" +
             " - Starts the game music\n\"take/drop (folowed by item name)\" - picks up and drops things.\n\"inventory\" - checks inventory");
   }
 
   public void look() {
-    player.getCurrentRoom().printRoomAndItems();
+    player.look();
   }
 
   public void exit() {

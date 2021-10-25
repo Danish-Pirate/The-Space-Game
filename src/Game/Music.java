@@ -33,6 +33,6 @@ public class Music {
     }
     public void playMusic () {
         clip.stop();
-        startMusic("Game/SPACE_EXPLORE.wav");
+        startMusic("src/Game/SPACE_EXPLORE.wav");
     }
 }

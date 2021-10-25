@@ -68,4 +68,10 @@ public class Player {
       }
     return listOfRoomItems;
   }
+  public void look () {
+    currentRoom.printRoomAndItems();
+  }
+  public String getCurrentRoomName () {
+    return currentRoom.getName();
+  }
 }
