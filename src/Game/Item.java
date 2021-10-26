@@ -2,9 +2,11 @@ package Game;
 
 public class Item {
   private final String name;
+  private int weight;
 
-  public Item(String name) {
+  public Item(String name, int weight) {
     this.name = name;
+    this.weight = weight;
   }
 
   public String getName() {
@@ -12,6 +14,10 @@ public class Item {
   }
   public String toString () {
     return this.name;
+  }
+
+  public int getWeight() {
+    return weight;
   }
 }
 

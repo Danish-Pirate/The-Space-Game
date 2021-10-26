@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Player {
   //Attributes
   private Room currentRoom;
+  private int maxCarryWeight = 1;
+  private int currentWeight;
   private ArrayList<Item> inventory = new ArrayList<>();
 
   // Handles player movement and commands
@@ -36,16 +38,20 @@ public class Player {
     return inventory;
   }
 
-  public boolean pickupItem(String command) {
+  public Directions pickupItem(String command) {
     command = command.substring(5);
     Item item = currentRoom.getItem(command);
     if (item != null) {
-      inventory.add(item);
-      currentRoom.removeItem(item);
-      return true;
-    } else {
-      return false;
+      if (currentWeight + item.getWeight() <= maxCarryWeight) {
+        inventory.add(item);
+        currentWeight = currentWeight + item.getWeight();
+        currentRoom.removeItem(item);
+        return Directions.PICKUPSUCCESS;
+      } else {
+        return Directions.MAXWEIGHT;
+      }
     }
+    return Directions.ITEMNOTEXIST;
   }
 
   public boolean dropItem(String command) {
@@ -53,6 +59,7 @@ public class Player {
     Item item = getItem(command);
     if (item != null) {
       inventory.remove(item);
+      currentWeight = currentWeight - item.getWeight();
       currentRoom.addItem(item);
       return true;
     } else {

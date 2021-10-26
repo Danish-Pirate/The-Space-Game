@@ -42,9 +42,12 @@ public class Game {
   public void getCommand(String command) {
     command = command.toLowerCase();
     if (command.startsWith("take ")) {
-       if (player.pickupItem(command)) {
+       if (player.pickupItem(command) == Directions.PICKUPSUCCESS) {
          music.playItemPickUpSound();
          System.out.println("Item taken!");
+       }
+       else if (player.pickupItem(command) == Directions.MAXWEIGHT) {
+         System.out.println("You are carrying too much weight! Drop something and try again.");
        }
        else {
          System.out.println("No such item in the room!");

@@ -101,8 +101,8 @@ public class Room {
     inventory.add(item);
   }
 
-  public void addItem(String name){
-    Item item = new Item(name);
+  public void addItem(String name, int weight){
+    Item item = new Item(name, weight);
     inventory.add(item);
   }
 
