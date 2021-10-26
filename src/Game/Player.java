@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class Player {
   //Attributes
+  private int health = 100;
   private Room currentRoom;
-  private int maxCarryWeight = 1;
+  private int maxCarryWeight = 10;
   private int currentWeight;
   private ArrayList<Item> inventory = new ArrayList<>();
 
@@ -88,5 +89,8 @@ public class Player {
         }
       }
       return null;
+    }
+    public void status () {
+      System.out.println("Health: " + health + "\nWeight: " + currentWeight);
     }
   }

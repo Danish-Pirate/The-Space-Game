@@ -71,7 +71,11 @@ public class Game {
       }
     } else if (command.matches("help|[h]")) {
       help();
-    } else if (command.matches("look|l")) {
+    }
+    else if (command.matches("status")) {
+      player.status();
+    }
+    else if (command.matches("look|l")) {
       player.look();
     } else if (command.matches("exit")) {
       exit();
