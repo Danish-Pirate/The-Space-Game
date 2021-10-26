@@ -101,6 +101,11 @@ public class Room {
     inventory.add(item);
   }
 
+  public void addItem(String name){
+    Item item = new Item(name);
+    inventory.add(item);
+  }
+
   public void removeItem(Item item) {
     inventory.remove(item);
   }

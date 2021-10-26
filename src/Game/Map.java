@@ -6,17 +6,6 @@ public class Map {
     //Connects the rooms together
     public Map() {
 
-        // Creates the room objects
-        Item lamp = new Item("Shiny Lamp");
-        Item bow = new Item("Bow");
-        Item gun1 = new Item("Revolver");
-        Item healthpotion = new Item("Healthpotion");
-        Item key = new Item("key");
-        Item flashlight = new Item("Flashlight");
-        Item blaster = new Item("Blaster");
-        Item can_of_food = new Item("Can of Food");
-        Item red_keycard = new Item("Red Keycard");
-
         Room room1 = new Room("Medbay", "The place is sterile and the beeping of machines can be heard all over.");
         Room room1a = new Room("Warehouse", "The wall is filled with different guns and on the table in the corner a vial with a health potion. Both might be useful! A small door to the east");
         Room secret1 = new Room("Secret room1","A monster is sleeping in the corner, a small transparent box with a key under him");
@@ -32,15 +21,15 @@ public class Map {
         Room room9a = new Room("Lab", "A deserted lab, with puddles of unknown liquid spilled from vials. The shelf with books to the left looks to be... a bit fake. Is that a lock?");
         Room secret2 = new Room("Secret room","A, seemingly, untouched ejection pod sits on its station by a window");
 
-        room1.getInventory().add(flashlight);
-        room5.getInventory().add(blaster);
-        room3.getInventory().add(can_of_food);
-        room6.getInventory().add(red_keycard);
-        room1.getInventory().add(lamp);
-        room1.getInventory().add(bow);
-        room1a.getInventory().add(gun1);
-        room1a.getInventory().add(healthpotion);
-        secret1.getInventory().add(key);
+        room1.addItem("Toolkit");
+        room5.addItem("Bow");
+        room3.addItem("Blaster");
+        room6.addItem("Stimkit");
+        room1.addItem("Red Keycard");
+        room1.addItem("Flashlight");
+        room1a.addItem("Can of food");
+        room1a.addItem("Exo-Suit");
+        secret1.addItem("Green Keycard");
 
         room1.connectEastRoom(room2);
         room1.connectSouthRoom(room4);

@@ -50,7 +50,7 @@ public class Player {
 
   public boolean dropItem(String command) {
     command = command.substring(5);
-    Item item = currentRoom.getItem(command);
+    Item item = getItem(command);
     if (item != null) {
       inventory.remove(item);
       currentRoom.addItem(item);
@@ -74,4 +74,12 @@ public class Player {
   public String getCurrentRoomName () {
     return currentRoom.getName();
   }
-}
+  public Item getItem (String itemName) {
+      for (int i = 0; i < inventory.size(); i++) {
+        if (itemName.equals(inventory.get(i).getName().toLowerCase())) {
+          return inventory.get(i);
+        }
+      }
+      return null;
+    }
+  }

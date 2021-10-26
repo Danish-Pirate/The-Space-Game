@@ -41,7 +41,7 @@ public class Game {
 
   public void getCommand(String command) {
     command = command.toLowerCase();
-    if (command.matches("take(\\s\\w+){1,3}$")) {
+    if (command.startsWith("take ")) {
        if (player.pickupItem(command)) {
          music.playItemPickUpSound();
          System.out.println("Item taken!");
@@ -49,7 +49,7 @@ public class Game {
        else {
          System.out.println("No such item in the room!");
        }
-    } else if (command.matches("drop(\\s\\w+){1,4}$")) {
+    } else if (command.startsWith("drop ")) {
       if (player.dropItem(command)) {
         music.playItemDropSound();
         System.out.println("Item dropped!");
@@ -58,13 +58,13 @@ public class Game {
       }
     }
     else if (command.matches("inv|invent|inventory")) {
-      if (player.checkInventory() != null) {
+      if (player.checkInventory().size() != 0) {
         System.out.println("There following items are in your inventory:");
         for (int i = 0; i < player.checkInventory().size(); i++) {
           System.out.print(player.checkInventory().get(i) + ", ");
         }
       } else {
-        System.out.println("No items in your inventory!");
+        System.out.println("There are no items in your inventory!");
       }
     } else if (command.matches("help|[h]")) {
       help();
@@ -74,8 +74,10 @@ public class Game {
       exit();
     } else if (command.matches("stop\s+music|stop\s+[m]")) {
       music.stopMusic();
+      System.out.println("Music stopped!");
     } else if (command.matches("start\s+music|start\s+[m]")) {
       music.playMusic();
+      System.out.println("Music started!");
     } else {
       System.out.println("Invalid command, try again");
     }
@@ -107,5 +109,4 @@ public class Game {
   public void exit() {
     gameIsRunning = false;
   }
-
 }
