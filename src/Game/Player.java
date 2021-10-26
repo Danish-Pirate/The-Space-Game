@@ -84,7 +84,7 @@ public class Player {
   }
   public Item getItem (String itemName) {
       for (int i = 0; i < inventory.size(); i++) {
-        if (itemName.equals(inventory.get(i).getName().toLowerCase())) {
+        if (itemName.equals(inventory.get(i).getName().toLowerCase()) || itemName.equals(inventory.get(i).getShortName().toLowerCase())) {
           return inventory.get(i);
         }
       }
