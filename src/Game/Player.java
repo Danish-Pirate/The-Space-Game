@@ -27,17 +27,10 @@ public class Player {
     }
   }
 
-  public Room getCurrentRoom() {
-    return currentRoom;
-  }
-
   public void setCurrentRoom(Room currentRoom) {
     this.currentRoom = currentRoom;
   }
 
-  public ArrayList<Item> getInventory() {
-    return inventory;
-  }
 
   public Directions pickupItem(String command) {
     command = command.substring(5);
@@ -91,6 +84,6 @@ public class Player {
       return null;
     }
     public void status () {
-      System.out.println("Health: " + health + "\nWeight: " + currentWeight);
+      System.out.println("Health: " + health + "\nWeight: " + currentWeight + "/" + maxCarryWeight);
     }
   }
