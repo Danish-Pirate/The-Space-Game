@@ -24,6 +24,9 @@ public class Game {
 
     while (gameIsRunning) {
       String consoleInput = input.nextLine();
+
+      /* Checks to see if the player has inputted a direction to go.
+      If not, getCommand method will be called to check the input against other conditions. */
       Directions commandDirection = getDirection(consoleInput);
       if (commandDirection == Directions.NORTH | commandDirection == Directions.SOUTH |
           commandDirection == Directions.EAST | commandDirection == Directions.WEST) {
@@ -39,6 +42,7 @@ public class Game {
     }
   }
 
+  // checks the player input against conditions for commands not related to changing rooms.
   public void getCommand(String command) {
     command = command.toLowerCase();
     if (command.startsWith("take ")) {
@@ -89,9 +93,9 @@ public class Game {
       System.out.println("Invalid command, try again");
     }
   }
-
+  /* Checks to see which direction the player wants to go and returns the appropriate Direction Enum.
+   If UNKNOWN is returned, then the input is not a go-command. */
   public static Directions getDirection(String direction) {
-
     direction = direction.toLowerCase();
     if (direction.matches("go\s+[n]|go\s+north|north|[n]")) {
       return Directions.NORTH;
