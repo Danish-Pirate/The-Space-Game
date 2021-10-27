@@ -38,7 +38,7 @@ public class Music {
         if (clip1 != null) {
             clip1.stop();
         }
-        startMusic("src/Game/SPACE_EXPLORE.wav");
+        startMusic("src/Sounds/SPACE_EXPLORE.wav");
     }
 
     public void playGameSounds(String musicLocation) {
@@ -59,10 +59,10 @@ public class Music {
     }
 
     public void playItemPickUpSound() {
-        playGameSounds("src/Game/ITEMPICKUP.wav");
+        playGameSounds("src/Sounds/ITEMPICKUP.wav");
     }
 
     public void playItemDropSound() {
-        playGameSounds("src/Game/ITEMDROP.wav");
+        playGameSounds("src/Sounds/ITEMDROP.wav");
     }
 }
