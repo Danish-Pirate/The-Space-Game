@@ -3,7 +3,7 @@ package Game;
 public abstract class AbstractItem {
   private final String name;
   private final String shortName;
-  private int weight;
+  private final int weight;
 
   public AbstractItem(String name, int weight) {
     this.name = name;

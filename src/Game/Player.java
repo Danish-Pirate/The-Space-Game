@@ -1,7 +1,5 @@
 package Game;
 
-import org.w3c.dom.ranges.Range;
-
 import java.util.ArrayList;
 
 public class Player {
@@ -68,7 +66,7 @@ public class Player {
         }
     }
 
-    public ArrayList checkInventory() {
+    public ArrayList<AbstractItem> checkInventory() {
         ArrayList<AbstractItem> listOfRoomItems = new ArrayList<>();
         if (inventory != null)
             for (int i = 0; i < inventory.size(); i++) {
@@ -163,10 +161,6 @@ public class Player {
         } else {
             System.out.println("You cannot eat this!");
         }
-    }
-
-    public int getHealth() {
-        return health;
     }
 
     public void addHealth(int healthPoints) {

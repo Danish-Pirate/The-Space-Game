@@ -1,7 +1,7 @@
 package Game;
 
 public class Food extends AbstractItem {
-   private int healthPoints;
+   private final int healthPoints;
 
    public Food (String name, int weight, int healthPoints) {
        super(name, weight);

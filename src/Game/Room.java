@@ -80,10 +80,6 @@ public class Room {
             westRoom.eastRoom = this;
     }
 
-    public ArrayList<AbstractItem> getInventory() {
-        return inventory;
-    }
-
     public AbstractItem getItem(String itemName) {
         for (int i = 0; i < inventory.size(); i++) {
             if (itemName.equals(inventory.get(i).getName().toLowerCase()) || itemName.equals(inventory.get(i).getShortName().toLowerCase())) {
