@@ -42,7 +42,7 @@ public class Player {
         if (item != null) {
             if (carryWeight + item.getWeight() <= maxCarryWeight) {
                 inventory.add(item);
-                carryWeight = carryWeight + item.getWeight();
+                addWeight(item.getWeight());
                 currentRoom.removeItem(item);
                 return GameValues.PICKUPSUCCESS;
             } else {
@@ -195,7 +195,7 @@ public class Player {
         }
     }
 
-    public void unequipWeapon(String weaponName) {
+    public void unequipWeapon() {
         currentWeapon = null;
         System.out.println("Weapon unequipped!");
     }
