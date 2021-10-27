@@ -33,6 +33,7 @@ public class Game {
         if (player.go(commandDirection)) {
           System.out.print("You are in " + player.getCurrentRoomName() + ". ");
           player.look();
+          System.out.println();
         } else {
           System.out.println("You cannot go that way");
         }
@@ -65,12 +66,17 @@ public class Game {
       }
     }
     else if (command.matches("inv|invent|inventory")) {
-      if (player.checkInventory().size() != 0) {
+      if (player.getInventory().size() != 0) {
         System.out.println("There following items are in your inventory:");
-        for (int i = 0; i < player.checkInventory().size(); i++) {
-          System.out.print(player.checkInventory().get(i) + ", ");
+        for (int i = 0; i < player.getInventory().size(); i++) {
+          if (i < player.getInventory().size() - 2) {
+            System.out.print(player.getInventory().get(i) + ", ");
+          } else if (i < player.getInventory().size() - 1) {
+            System.out.print(player.getInventory().get(i) + " and ");
+          } else {
+            System.out.println(player.getInventory().get(i));
+          }
         }
-        System.out.println();
       } else {
         System.out.println("There are no items in your inventory!");
       }

@@ -128,7 +128,7 @@ public class Room {
     // Prints a description of the room along with items inside of it.
     public void printRoomAndItems() {
         System.out.println(roomDescription);
-        if (inventory.size() != 0) {
+        if (!inventory.isEmpty()) {
             System.out.println("There are the following items in the room:");
             for (int i = 0; i < inventory.size(); i++) {
                 if (i < inventory.size() - 2) {
@@ -139,6 +139,8 @@ public class Room {
                     System.out.print(inventory.get(i));
                 }
             }
+        } else {
+            System.out.print("There are no items in this room");
         }
     }
 }

@@ -66,7 +66,7 @@ public class Player {
         }
     }
 
-    public ArrayList<AbstractItem> checkInventory() {
+    public ArrayList<AbstractItem> getInventory() {
         ArrayList<AbstractItem> listOfRoomItems = new ArrayList<>();
         if (inventory != null)
             for (int i = 0; i < inventory.size(); i++) {
@@ -77,7 +77,6 @@ public class Player {
 
     public void look() {
         currentRoom.printRoomAndItems();
-        System.out.println();
     }
 
     public String getCurrentRoomName() {
