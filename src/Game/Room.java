@@ -56,6 +56,7 @@ public class Room {
         this.westRoom = westRoom;
     }
 
+    // Connects the rooms
     public void connectNorthRoom(Room northRoom) {
         setNorthRoom(northRoom);
         if (northRoom.southRoom == null)
@@ -80,6 +81,7 @@ public class Room {
             westRoom.eastRoom = this;
     }
 
+    // Returns an item from the room's inventory arraylist by comparing itemName String to names of the item objects inside the room.
     public AbstractItem getItem(String itemName) {
         for (int i = 0; i < inventory.size(); i++) {
             if (itemName.equals(inventory.get(i).getName().toLowerCase()) || itemName.equals(inventory.get(i).getShortName().toLowerCase())) {
@@ -100,15 +102,19 @@ public class Room {
         inventory.add(item);
     }
 
+    // Creates a food item and adds it to a room
     public void createAndAddFoodItem(String name, int weight, int healthPoints) {
         Food food = new Food(name, weight, healthPoints);
         inventory.add(food);
     }
 
+    // Creates a melee weapon item and adds it to a room
     public void createAndAddMeleeWeaponItem(String name, int weight, int damage) {
         MeleeWeapon item = new MeleeWeapon(name, weight, damage);
         inventory.add(item);
     }
+
+    // Creates a range weapon item and adds it to a room
     public void createAndAddRangeWeaponItem(String name, int weight, int damage, int ammo) {
         RangeWeapon item = new RangeWeapon(name, weight, damage, ammo);
         inventory.add(item);
@@ -119,12 +125,19 @@ public class Room {
         inventory.remove(item);
     }
 
+    // Prints a description of the room along with items inside of it.
     public void printRoomAndItems() {
         System.out.println(roomDescription);
         if (inventory.size() != 0) {
             System.out.println("There are the following items in the room:");
             for (int i = 0; i < inventory.size(); i++) {
-                System.out.print(inventory.get(i) + ", ");
+                if (i < inventory.size() - 2) {
+                    System.out.print(inventory.get(i) + ", ");
+                } else if (i < inventory.size() - 1) {
+                    System.out.print(inventory.get(i) + " and ");
+                } else {
+                    System.out.print(inventory.get(i));
+                }
             }
         }
     }
