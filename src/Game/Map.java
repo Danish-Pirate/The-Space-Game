@@ -21,15 +21,15 @@ public class Map {
         Room room9a = new Room("Lab", "A deserted lab, with puddles of unknown liquid spilled from vials. The shelf with books to the left looks to be... a bit fake. Is that a lock?");
         Room secret2 = new Room("Secret room","A, seemingly, untouched ejection pod sits on its station by a window");
 
-        room1.addItem("Heavy Toolkit", 3);
-        room5.addItem("Sharp Knife", 2);
-        room3.addItem("Black Blaster", 3);
-        room6.addItem("Stimkit", 1);
-        room1.addItem("Red Keycard", 1);
-        room1.addItem("Sturdy Flashlight", 3);
-        room1a.addItem("Can of food", 2);
-        room1a.addItem("Exo Suit", 5);
-        secret1.addItem("Green Keycard", 1);
+        room1.createAndAddItem("Heavy Toolkit", 3);
+        room1.createAndAddMeleeWeaponItem("Sharp Knife", 2, 5);
+        room3.createAndAddRangeWeaponItem("Black Blaster", 3, 7, 10);
+        room6.createAndAddItem("Stimkit", 1);
+        room1.createAndAddItem("Red Keycard", 1);
+        room1.createAndAddMeleeWeaponItem("Sturdy Flashlight", 3, 2);
+        room1a.createAndAddFoodItem("Can of food", 2, 15);
+        room1a.createAndAddItem("Exo Suit", 5);
+        secret1.createAndAddItem("Green Keycard", 1);
 
         room1.connectEastRoom(room2);
         room1.connectSouthRoom(room4);

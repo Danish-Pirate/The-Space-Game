@@ -1,89 +1,202 @@
 package Game;
 
+import org.w3c.dom.ranges.Range;
+
 import java.util.ArrayList;
 
 public class Player {
-  //Attributes
-  private int health = 100;
-  private Room currentRoom;
-  private int maxCarryWeight = 10;
-  private int currentWeight;
-  private ArrayList<Item> inventory = new ArrayList<>();
+    //Attributes
+    private int health = 100;
+    private int maxHealth = 100;
+    private Room currentRoom;
+    private int maxCarryWeight = 10;
+    private int carryWeight;
+    private Weapon currentWeapon;
+    private ArrayList<AbstractItem> inventory = new ArrayList<>();
 
-  // Handles player movement and commands
-  public boolean go(Directions direction) {
-    Room requestRoom = switch (direction) {
-      case NORTH -> currentRoom.getNorthRoom();
-      case SOUTH -> currentRoom.getSouthRoom();
-      case EAST -> currentRoom.getEastRoom();
-      case WEST -> currentRoom.getWestRoom();
-      default -> null;
-    };
-    if (requestRoom == null) {
-      return false;
-    } else {
-      currentRoom = requestRoom;
-      return true;
-    }
-  }
-
-  public void setCurrentRoom(Room currentRoom) {
-    this.currentRoom = currentRoom;
-  }
-
-
-  public Directions pickupItem(String command) {
-    command = command.substring(5);
-    Item item = currentRoom.getItem(command);
-    if (item != null) {
-      if (currentWeight + item.getWeight() <= maxCarryWeight) {
-        inventory.add(item);
-        currentWeight = currentWeight + item.getWeight();
-        currentRoom.removeItem(item);
-        return Directions.PICKUPSUCCESS;
-      } else {
-        return Directions.MAXWEIGHT;
-      }
-    }
-    return Directions.ITEMNOTEXIST;
-  }
-
-  public boolean dropItem(String command) {
-    command = command.substring(5);
-    Item item = getItem(command);
-    if (item != null) {
-      inventory.remove(item);
-      currentWeight = currentWeight - item.getWeight();
-      currentRoom.addItem(item);
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  public ArrayList checkInventory() {
-    ArrayList<Item> listOfRoomItems = new ArrayList<>();
-    if (inventory != null)
-      for (int i = 0; i < inventory.size(); i++) {
-        listOfRoomItems.add(inventory.get(i));
-      }
-    return listOfRoomItems;
-  }
-  public void look () {
-    currentRoom.printRoomAndItems();
-  }
-  public String getCurrentRoomName () {
-    return currentRoom.getName();
-  }
-  public Item getItem (String itemName) {
-      for (int i = 0; i < inventory.size(); i++) {
-        if (itemName.equals(inventory.get(i).getName().toLowerCase()) || itemName.equals(inventory.get(i).getShortName().toLowerCase())) {
-          return inventory.get(i);
+    // Handles player movement and commands
+    public boolean go(GameValues direction) {
+        Room requestRoom = switch (direction) {
+            case NORTH -> currentRoom.getNorthRoom();
+            case SOUTH -> currentRoom.getSouthRoom();
+            case EAST -> currentRoom.getEastRoom();
+            case WEST -> currentRoom.getWestRoom();
+            default -> null;
+        };
+        if (requestRoom == null) {
+            return false;
+        } else {
+            currentRoom = requestRoom;
+            return true;
         }
-      }
-      return null;
     }
-    public void status () {
-      System.out.println("Health: " + health + "\nWeight: " + currentWeight + "/" + maxCarryWeight);
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
     }
-  }
+
+
+    public GameValues pickupItem(String itemName) {
+        itemName = itemName.substring(5);
+        AbstractItem item = currentRoom.getItem(itemName);
+        if (item != null) {
+            if (carryWeight + item.getWeight() <= maxCarryWeight) {
+                inventory.add(item);
+                carryWeight = carryWeight + item.getWeight();
+                currentRoom.removeItem(item);
+                return GameValues.PICKUPSUCCESS;
+            } else {
+                return GameValues.MAXWEIGHT;
+            }
+        }
+        return GameValues.ITEMNOTEXIST;
+    }
+
+    public boolean dropItem(String itemName) {
+        itemName = itemName.substring(5);
+        AbstractItem item = getItem(itemName);
+        if (item != null) {
+            inventory.remove(item);
+            carryWeight = carryWeight - item.getWeight();
+            currentRoom.addItem(item);
+            if (item == currentWeapon) {
+                currentWeapon = null;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public ArrayList checkInventory() {
+        ArrayList<AbstractItem> listOfRoomItems = new ArrayList<>();
+        if (inventory != null)
+            for (int i = 0; i < inventory.size(); i++) {
+                listOfRoomItems.add(inventory.get(i));
+            }
+        return listOfRoomItems;
+    }
+
+    public void look() {
+        currentRoom.printRoomAndItems();
+        System.out.println();
+    }
+
+    public String getCurrentRoomName() {
+        return currentRoom.getName();
+    }
+
+    public AbstractItem getItem(String itemName) {
+        for (int i = 0; i < inventory.size(); i++) {
+            if (itemName.equals(inventory.get(i).getName().toLowerCase()) || itemName.equals(inventory.get(i).getShortName().toLowerCase())) {
+                return inventory.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void status() {
+        if (health == maxHealth) {
+            System.out.println("Health: " + health + "/" + maxHealth + " - You are in peak condition!" +
+                    "\nWeight: " + carryWeight + "/" + maxCarryWeight);
+            System.out.println(getCurrentWeapon());
+        } else if (health >= maxHealth * 0.8) {
+            System.out.println("Health: " + health + "/" + maxHealth + " - You only have a few scratches on you" +
+                    "\nWeight: " + carryWeight + "/" + maxCarryWeight);
+            System.out.println(getCurrentWeapon());
+        } else if (health >= maxHealth * 0.6) {
+            System.out.println("Health: " + health + "/" + maxHealth + " - You are looking kind of beat up" +
+                    "\nWeight: " + carryWeight + "/" + maxCarryWeight);
+            System.out.println(getCurrentWeapon());
+        } else if (health >= maxHealth * 0.4) {
+            System.out.println("Health: " + health + "/" + maxHealth + " - You are badly wounded, best to avoid combat if you can" +
+                    "\nWeight: " + carryWeight + "/" + maxCarryWeight);
+            System.out.println(getCurrentWeapon());
+        } else if (health >= maxHealth * 0.2) {
+            System.out.println("Health: " + health + "/" + maxHealth + " - You are extremely wounded, your next fight might be your last" +
+                    "\nWeight: " + carryWeight + "/" + maxCarryWeight);
+            System.out.println(getCurrentWeapon());
+        } else if (health >= 0) {
+            System.out.println("Health: " + health + "/" + maxHealth + " - You are on the brink of death. Find a way to recover or you're done for" +
+                    "\nWeight: " + carryWeight + "/" + maxCarryWeight);
+            System.out.println(getCurrentWeapon());
+        }
+    }
+
+    public GameValues checkHealthStatus() {
+        if (health >= 0) {
+            return GameValues.DEATH;
+        } else {
+            return null;
+        }
+    }
+
+    public String getCurrentWeapon() {
+        if (currentWeapon != null) {
+            String message = "Your current weapon is " + currentWeapon;
+            if (currentWeapon instanceof RangeWeapon) {
+                message = "Your current weapon is " + currentWeapon + " It has " + ((RangeWeapon) currentWeapon).getAmmo() + " ammo";
+            }
+            return message;
+        } else {
+            return "You have no weapon equipped";
+        }
+    }
+
+    public void eat(String itemName) {
+        itemName = itemName.substring(4);
+        AbstractItem food = getItem(itemName);
+        if (food instanceof Food) {
+            if (health + ((Food) food).getHealthPoints() <= maxHealth) {
+                addHealth(((Food) food).getHealthPoints());
+                removeWeight(food.getWeight());
+                System.out.println("You have eaten the " + food.getName() + "! Your health is now " + health);
+            } else if (health == maxHealth) {
+                System.out.println("You are already at full health!");
+            } else {
+                removeWeight(food.getWeight());
+                health = maxHealth;
+                System.out.println("You have eaten the " + food.getName() + "! Your health is now " + health);
+            }
+        } else if (food == null) {
+            System.out.println("You don't have that in your inventory!");
+        } else {
+            System.out.println("You cannot eat this!");
+        }
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void addHealth(int healthPoints) {
+        health += healthPoints;
+    }
+
+    public void removeHealth(int healthPoints) {
+        health -= healthPoints;
+    }
+
+    public void addWeight(int weight) {
+        carryWeight += weight;
+    }
+
+    public void removeWeight(int weight) {
+        carryWeight -= weight;
+    }
+
+    public void equipWeapon(String itemName) {
+        itemName = itemName.substring(6);
+        if ((getItem(itemName) instanceof Weapon weapon)) {
+            currentWeapon = weapon;
+            System.out.println("Weapon equipped! Your weapon is " + currentWeapon.getName());
+        } else {
+            System.out.println("You cannot equip that!");
+        }
+    }
+
+    public void unequipWeapon(String weaponName) {
+        currentWeapon = null;
+        System.out.println("Weapon unequipped!");
+    }
+}

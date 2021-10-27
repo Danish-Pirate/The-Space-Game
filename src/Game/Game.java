@@ -27,9 +27,9 @@ public class Game {
 
       /* Checks to see if the player has inputted a direction to go.
       If not, getCommand method will be called to check the input against other conditions. */
-      Directions commandDirection = getDirection(consoleInput);
-      if (commandDirection == Directions.NORTH | commandDirection == Directions.SOUTH |
-          commandDirection == Directions.EAST | commandDirection == Directions.WEST) {
+      GameValues commandDirection = getDirection(consoleInput);
+      if (commandDirection == GameValues.NORTH | commandDirection == GameValues.SOUTH |
+          commandDirection == GameValues.EAST | commandDirection == GameValues.WEST) {
         if (player.go(commandDirection)) {
           System.out.print("You are in " + player.getCurrentRoomName() + ". ");
           player.look();
@@ -46,11 +46,11 @@ public class Game {
   public void getCommand(String command) {
     command = command.toLowerCase();
     if (command.startsWith("take ")) {
-       if (player.pickupItem(command) == Directions.PICKUPSUCCESS) {
+       if (player.pickupItem(command) == GameValues.PICKUPSUCCESS) {
          music.playItemPickUpSound();
          System.out.println("Item taken!");
        }
-       else if (player.pickupItem(command) == Directions.MAXWEIGHT) {
+       else if (player.pickupItem(command) == GameValues.MAXWEIGHT) {
          System.out.println("You are carrying too much weight! Drop something and try again.");
        }
        else {
@@ -70,17 +70,26 @@ public class Game {
         for (int i = 0; i < player.checkInventory().size(); i++) {
           System.out.print(player.checkInventory().get(i) + ", ");
         }
+        System.out.println();
       } else {
         System.out.println("There are no items in your inventory!");
       }
     } else if (command.matches("help|[h]")) {
       help();
+    } else if (command.startsWith("equip ")) {
+      player.equipWeapon(command);
+    } else if (command.startsWith("unequip ")) {
+      player.unequipWeapon(command);
+    }
+    else if (command.startsWith("eat ")) {
+      player.eat(command);
     }
     else if (command.matches("status")) {
       player.status();
     }
     else if (command.matches("look|l")) {
       player.look();
+      System.out.println();
     } else if (command.matches("exit")) {
       exit();
     } else if (command.matches("stop\s+music|stop\s+[m]")) {
@@ -95,18 +104,18 @@ public class Game {
   }
   /* Checks to see which direction the player wants to go and returns the appropriate Direction Enum.
    If UNKNOWN is returned, then the input is not a go-command. */
-  public static Directions getDirection(String direction) {
+  public static GameValues getDirection(String direction) {
     direction = direction.toLowerCase();
     if (direction.matches("go\s+[n]|go\s+north|north|[n]")) {
-      return Directions.NORTH;
+      return GameValues.NORTH;
     } else if (direction.matches("go\s+[s]|go\s+south|south|[s]")) {
-      return Directions.SOUTH;
+      return GameValues.SOUTH;
     } else if (direction.matches("go\s+[w]|go\s+west|west|[w]")) {
-      return Directions.WEST;
+      return GameValues.WEST;
     } else if (direction.matches("go\s+[e]|go\s+east|east|[e]")) {
-      return Directions.EAST;
+      return GameValues.EAST;
     } else {
-      return Directions.UNKNOWN;
+      return GameValues.UNKNOWN;
     }
   }
 
@@ -114,12 +123,14 @@ public class Game {
     System.out.println("""
             "go (north, south, east, west)" - Makes you go to a certain direction
             "look" - Gives you a description of the room
+            "eat (item name)" - eats a food item
+            "equip (weapon name)" - equips a weapon
             "exit" - Exits the game
             "stop music" - Stops the game music
             "start music" - Starts the game music
             "take/drop (folowed by item name)" - picks up and drops things
             "inventory" - checks inventory
-            "status" - displays health and weight""");
+            "status" - displays health, weight and current weapon stats""");
   }
 
   public void exit() {
