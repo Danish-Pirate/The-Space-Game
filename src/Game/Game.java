@@ -124,8 +124,7 @@ public class Game {
         "go (north, south, east, west)" - Makes you go to a certain direction
         "look" - Gives you a description of the room
         "eat (item name)" - eats a food item
-        "equip (weapon name)" - equips a weapon
-        "wear (armour item)" - puts armour on
+        "equip (weapon name)" - equips a weapon or armour
         "exit" - Exits the game
         "stop music" - Stops the game music
         "start music" - Starts the game music
