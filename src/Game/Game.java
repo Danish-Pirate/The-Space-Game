@@ -7,6 +7,7 @@ public class Game {
   private Player player = new Player();
   private Map map = new Map();
   private Music music = new Music();
+
   public void start() {
 
     System.out.println("Welcome to Space Game!");
@@ -47,16 +48,14 @@ public class Game {
   public void getCommand(String command) {
     command = command.toLowerCase();
     if (command.startsWith("take ")) {
-       if (player.pickupItem(command) == GameValues.PICKUPSUCCESS) {
-         music.playItemPickUpSound();
-         System.out.println("Item taken!");
-       }
-       else if (player.pickupItem(command) == GameValues.MAXWEIGHT) {
-         System.out.println("You are carrying too much weight! Drop something and try again.");
-       }
-       else {
-         System.out.println("No such item in the room!");
-       }
+      if (player.pickupItem(command) == GameValues.PICKUPSUCCESS) {
+        music.playItemPickUpSound();
+        System.out.println("Item taken!");
+      } else if (player.pickupItem(command) == GameValues.MAXWEIGHT) {
+        System.out.println("You are carrying too much weight! Drop something and try again.");
+      } else {
+        System.out.println("No such item in the room!");
+      }
     } else if (command.startsWith("drop ")) {
       if (player.dropItem(command)) {
         music.playItemDropSound();
@@ -64,8 +63,7 @@ public class Game {
       } else {
         System.out.println("No such item in your inventory!");
       }
-    }
-    else if (command.matches("inv|invent|inventory")) {
+    } else if (command.matches("inv|invent|inventory")) {
       if (player.getInventory().size() != 0) {
         System.out.println("There following items are in your inventory:");
         for (int i = 0; i < player.getInventory().size(); i++) {
@@ -83,19 +81,12 @@ public class Game {
     } else if (command.matches("help|[h]")) {
       help();
     } else if (command.startsWith("equip ")) {
-      player.equipWeapon(command);
-    } else if (command.startsWith("unequip ")) {
-      player.unequipWeapon();
-    } else if (command.startsWith("wear ")) {
-      player.equipArmour(command);
-    }
-    else if (command.startsWith("eat ")) {
+      player.equip(command);
+    } else if (command.startsWith("eat ")) {
       player.eat(command);
-    }
-    else if (command.matches("status")) {
+    } else if (command.matches("status")) {
       player.status();
-    }
-    else if (command.matches("look|l")) {
+    } else if (command.matches("look|l")) {
       player.look();
       System.out.println();
     } else if (command.matches("exit")) {
@@ -110,6 +101,7 @@ public class Game {
       System.out.println("Invalid command, try again");
     }
   }
+
   /* Checks to see which direction the player wants to go and returns the appropriate Direction Enum.
    If UNKNOWN is returned, then the input is not a go-command. */
   public static GameValues getDirection(String direction) {
@@ -129,16 +121,17 @@ public class Game {
 
   public void help() {
     System.out.println("""
-            "go (north, south, east, west)" - Makes you go to a certain direction
-            "look" - Gives you a description of the room
-            "eat (item name)" - eats a food item
-            "equip (weapon name)" - equips a weapon
-            "exit" - Exits the game
-            "stop music" - Stops the game music
-            "start music" - Starts the game music
-            "take/drop (folowed by item name)" - picks up and drops things
-            "inventory" - checks inventory
-            "status" - displays health, weight and current weapon stats""");
+        "go (north, south, east, west)" - Makes you go to a certain direction
+        "look" - Gives you a description of the room
+        "eat (item name)" - eats a food item
+        "equip (weapon name)" - equips a weapon
+        "wear (armour item)" - puts armour on
+        "exit" - Exits the game
+        "stop music" - Stops the game music
+        "start music" - Starts the game music
+        "take/drop (folowed by item name)" - picks up and drops things
+        "inventory" - checks inventory
+        "status" - displays health, weight and current weapon stats""");
   }
 
   public void exit() {

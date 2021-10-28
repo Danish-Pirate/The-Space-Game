@@ -119,8 +119,8 @@ public class Room {
         RangeWeapon item = new RangeWeapon(name, weight, damage, ammo);
         inventory.add(item);
     }
-    public void createAndAddArmourItem(String name, int weight, int maxHealthIncrease, int maxCarryWeightIncrease) {
-        Armour item = new Armour(name, weight, maxHealthIncrease, maxCarryWeightIncrease);
+    public void createAndAddArmourItem(String name, int weight, int damage, int maxHealthIncrease, int maxCarryWeightIncrease) {
+        Armour item = new Armour(name, weight, damage, maxHealthIncrease, maxCarryWeightIncrease);
         inventory.add(item);
     }
 

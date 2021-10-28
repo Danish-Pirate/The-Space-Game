@@ -1,11 +1,11 @@
 package Game;
 
-public class Armour extends AbstractItem {
+public class Armour extends Weapon {
   private final int maxHealthIncrease;
   private final int maxCarryWeightIncrease;
 
-  public Armour(String name, int weight, int maxHealthIncrease, int maxCarryWeightIncrease) {
-    super(name, weight);
+  public Armour(String name, int weight, int damage, int maxHealthIncrease, int maxCarryWeightIncrease) {
+    super(name, weight, damage);
     this.maxHealthIncrease = maxHealthIncrease;
     this.maxCarryWeightIncrease = maxCarryWeightIncrease;
   }
