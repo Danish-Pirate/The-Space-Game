@@ -10,6 +10,7 @@ public class Player {
     private int maxCarryWeight = 10;
     private int carryWeight;
     private Weapon currentWeapon;
+    private Armour currentArmour;
     private ArrayList<AbstractItem> inventory = new ArrayList<>();
 
     // Handles player movement and commands
@@ -176,6 +177,15 @@ public class Player {
 
     public void removeWeight(int weight) {
         carryWeight -= weight;
+    }
+    public void equipArmour (String itemName) {
+        itemName = itemName.substring(5);
+        if ((getItem(itemName) instanceof Armour armour)) {
+            currentArmour = armour;
+            maxCarryWeight += armour.getMaxCarryWeightIncrease();
+            maxHealth += armour.getMaxHealthIncrease();
+            System.out.println("Armour equipped! Your current armour is " + armour.getName());
+        }
     }
 
     public void equipWeapon(String itemName) {

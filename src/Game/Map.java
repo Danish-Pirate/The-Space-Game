@@ -28,9 +28,8 @@ public class Map {
         room1.createAndAddItem("Red Keycard", 1);
         room1.createAndAddMeleeWeaponItem("Sturdy Flashlight", 3, 2);
         room1a.createAndAddFoodItem("Can of food", 2, 15);
-        room1a.createAndAddItem("Exo Suit", 5);
+        room1a.createAndAddArmourItem("Exo Suit", 5, 20, 10);
         secret1.createAndAddItem("Green Keycard", 1);
-
         room1.connectEastRoom(room2);
         room1.connectSouthRoom(room4);
         room1.connectNorthRoom(room1a);

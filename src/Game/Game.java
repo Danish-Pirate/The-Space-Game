@@ -86,6 +86,8 @@ public class Game {
       player.equipWeapon(command);
     } else if (command.startsWith("unequip ")) {
       player.unequipWeapon();
+    } else if (command.startsWith("wear ")) {
+      player.equipArmour(command);
     }
     else if (command.startsWith("eat ")) {
       player.eat(command);
