@@ -1,5 +1,0 @@
-package Game;
-
-public enum GameValues {
-  NORTH, SOUTH, WEST, EAST, MAXWEIGHT, PICKUPSUCCESS, ITEMNOTEXIST, DEATH, UNKNOWN;
-}
