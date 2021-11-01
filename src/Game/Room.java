@@ -124,8 +124,8 @@ public class Room {
         Armour item = new Armour(name, weight, damage, maxHealthIncrease, maxCarryWeightIncrease);
         inventory.add(item);
     }
-    public void createAndAddEnemy (String name, int health, Weapon currentWeapon) {
-        Enemy enemy = new Enemy(name, health, currentWeapon);
+    public void createAndAddEnemy (String name, int health, Weapon currentWeapon, Room currentRoom) {
+        Enemy enemy = new Enemy(name, health, currentWeapon, currentRoom);
         listOfEnemies.add(enemy);
     }
 
@@ -163,7 +163,7 @@ public class Room {
                 }
             }
         } else {
-            System.out.println("There are no enemies in this room");
+            System.out.print("\n\nThere are no enemies in this room");
         }
     }
     public ArrayList<Enemy> getListOfEnemies() {
@@ -176,6 +176,10 @@ public class Room {
             }
         }
         return null;
+    }
+
+    public ArrayList<AbstractItem> getInventory() {
+        return inventory;
     }
 }
 

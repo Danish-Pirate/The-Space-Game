@@ -11,4 +11,7 @@ public class RangeWeapon extends Weapon {
     public int getAmmo() {
         return ammo;
     }
+    public void useAmmo () {
+        ammo -= 1;
+    }
 }
