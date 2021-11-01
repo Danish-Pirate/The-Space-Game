@@ -7,4 +7,7 @@ public abstract class Weapon extends AbstractItem {
         super(name, weight);
         this.damage = damage;
     }
+    public int getDamage() {
+        return damage;
+    }
 }

@@ -80,7 +80,7 @@ public class Player {
     }
 
     public void look() {
-        currentRoom.printRoomAndItems();
+        currentRoom.printRoomAndItemsAndEnemies();
     }
 
     public String getCurrentRoomName() {
@@ -214,7 +214,43 @@ public class Player {
         return currentArmour;
     }
 
+    public Enemy attack() {
+        if (currentWeapon != null) {
+            currentRoom.getListOfEnemies().get(0).takeDamage(currentWeapon.getDamage());
+            return currentRoom.getListOfEnemies().get(0);
+        } else {
+            return null;
+        }
+    }
+
+    public Status attack(Enemy enemy) {
+        Status status;
+        if (currentWeapon != null) {
+            enemy.takeDamage(currentWeapon.getDamage());
+            status = Status.PLAYER_ATTACK_SUCCESS;
+        } else {
+            status = Status.ATTACK_NO_WEAPON;
+        }
+        return status;
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
     public int getHealth() {
         return health;
+    }
+    public Enemy findEnemy (String enemyName) {
+        Enemy enemy = currentRoom.findEnemy(enemyName);
+        return enemy;
+    }
+
+    public boolean doesCurrentRoomHaveEnemy() {
+        if (currentRoom.getListOfEnemies().isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

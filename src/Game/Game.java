@@ -86,7 +86,7 @@ public class Game {
                     System.out.println("Armour equipped! Your current armour is " + player.getCurrentArmour());
                     break;
                 case WEAPON_EQUIP_SUCCESS:
-                    System.out.println("Weapon equipped! Your weapon is " + player.getCurrentWeapon());
+                    System.out.println("Weapon equipped! " + player.getCurrentWeapon());
                     break;
                 case CANNOT_EQUIP:
                     System.out.println("You cannot equip that!");
@@ -110,6 +110,23 @@ public class Game {
                 case ITEM_NOT_EXIST:
                     System.out.println("There is no such item in your inventory!");
                     break;
+            }
+        } else if (command.startsWith("attack")) {
+            if (player.doesCurrentRoomHaveEnemy()) {
+                if (command.length() > "attack".length()) {
+                    String enemyName = command.substring(7);
+                    Enemy enemy = player.findEnemy(enemyName);
+                    System.out.println(handleAttack(enemy));
+                } else if (command.equals("attack")) {
+                    Enemy enemy = player.attack();
+                    if (enemy != null) {
+                        System.out.println("You attack the enemy. Enemy health is now " + enemy.getHealth());
+                    } else {
+                        System.out.println("You don't have a weapon equipped!");
+                    }
+                }
+            } else {
+                System.out.println("There are no enemies in the room, so you attack the air.");
             }
         } else if (command.matches("status")) {
             player.status();
@@ -162,5 +179,16 @@ public class Game {
 
     public void exit() {
         gameIsRunning = false;
+    }
+
+    public String handleAttack(Enemy enemy) {
+        if (enemy != null) {
+            if (player.attack(enemy) == Status.PLAYER_ATTACK_SUCCESS) {
+                return "You attack the enemy. Enemy health is now " + enemy.getHealth();
+            }
+            return "You don't have a weapon equipped!";
+        }
+
+        return "Enemy doesn't exist!";
     }
 }

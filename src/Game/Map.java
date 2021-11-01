@@ -30,6 +30,9 @@ public class Map {
         room1a.createAndAddFoodItem("Can of food", 2, 15);
         room1a.createAndAddArmourItem("Exo Suit", 5, 0, 20, 10);
         secret1.createAndAddItem("Green Keycard", 1);
+
+        room1.createAndAddEnemy("Mantis", 100, new MeleeWeapon("DC-15A", 2, 10));
+
         room1.connectEastRoom(room2);
         room1.connectSouthRoom(room4);
         room1.connectNorthRoom(room1a);

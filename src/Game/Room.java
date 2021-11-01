@@ -8,6 +8,7 @@ public class Room {
     final private String name;
     final private String roomDescription;
     private ArrayList<AbstractItem> inventory = new ArrayList<>();
+    private ArrayList<Enemy> listOfEnemies = new ArrayList<>();
     private Room northRoom;
     private Room eastRoom;
     private Room southRoom;
@@ -123,6 +124,10 @@ public class Room {
         Armour item = new Armour(name, weight, damage, maxHealthIncrease, maxCarryWeightIncrease);
         inventory.add(item);
     }
+    public void createAndAddEnemy (String name, int health, Weapon currentWeapon) {
+        Enemy enemy = new Enemy(name, health, currentWeapon);
+        listOfEnemies.add(enemy);
+    }
 
     // Removes an item from a room
     public void removeItem(AbstractItem item) {
@@ -130,7 +135,7 @@ public class Room {
     }
 
     // Prints a description of the room along with items inside of it.
-    public void printRoomAndItems() {
+    public void printRoomAndItemsAndEnemies() {
         System.out.println(roomDescription);
         if (!inventory.isEmpty()) {
             System.out.println("There are the following items in the room:");
@@ -146,6 +151,31 @@ public class Room {
         } else {
             System.out.print("There are no items in this room");
         }
+        if (!listOfEnemies.isEmpty()) {
+            System.out.println("\n\nThere are the following enemies in the room: " );
+            for (int i = 0; i < listOfEnemies.size(); i++) {
+                if (i < listOfEnemies.size() - 2) {
+                    System.out.print(listOfEnemies.get(i) + ", ");
+                } else if (i < listOfEnemies.size() - 1) {
+                    System.out.print(listOfEnemies.get(i) + " and ");
+                } else {
+                    System.out.print(listOfEnemies.get(i));
+                }
+            }
+        } else {
+            System.out.println("There are no enemies in this room");
+        }
+    }
+    public ArrayList<Enemy> getListOfEnemies() {
+        return listOfEnemies;
+    }
+    public Enemy findEnemy (String enemyName) {
+        for (int i = 0; i < listOfEnemies.size(); i++) {
+            if (enemyName.equalsIgnoreCase(listOfEnemies.get(i).getName())) {
+                return listOfEnemies.get(i);
+            }
+        }
+        return null;
     }
 }
 
