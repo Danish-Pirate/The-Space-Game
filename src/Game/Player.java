@@ -73,8 +73,8 @@ public class Player {
   public ArrayList<AbstractItem> getInventory() {
     ArrayList<AbstractItem> listOfRoomItems = new ArrayList<>();
     if (inventory != null)
-      for (int i = 0; i < inventory.size(); i++) {
-        listOfRoomItems.add(inventory.get(i));
+      for (AbstractItem abstractItem : inventory) {
+        listOfRoomItems.add(abstractItem);
       }
     return listOfRoomItems;
   }
@@ -88,9 +88,9 @@ public class Player {
   }
 
   public AbstractItem getItem(String itemName) {
-    for (int i = 0; i < inventory.size(); i++) {
-      if (itemName.equals(inventory.get(i).getName().toLowerCase()) || itemName.equals(inventory.get(i).getShortName().toLowerCase())) {
-        return inventory.get(i);
+    for (AbstractItem abstractItem : inventory) {
+      if (itemName.equals(abstractItem.getName().toLowerCase()) || itemName.equals(abstractItem.getShortName().toLowerCase())) {
+        return abstractItem;
       }
     }
     return null;
@@ -122,16 +122,6 @@ public class Player {
           "\nWeight: " + carryWeight + "/" + maxCarryWeight);
       System.out.println(getCurrentWeapon());
     }
-  }
-
-  public Status checkHealthStatus() {
-    Status status;
-    if (health >= 0) {
-      status = Status.DEATH;
-    } else {
-      status = Status.ALIVE;
-    }
-    return status;
   }
 
   public String getCurrentWeapon() {
@@ -174,10 +164,6 @@ public class Player {
     health += healthPoints;
   }
 
-  public void removeHealth(int healthPoints) {
-    health -= healthPoints;
-  }
-
   public void addWeight(int weight) {
     carryWeight += weight;
   }
@@ -214,7 +200,7 @@ public class Player {
     return currentArmour;
   }
 
-  public Status canUseWeapon() {
+  public Status getEquippedWeaponStatus() {
     if (currentWeapon == null) {
       return Status.NO_WEAPON_EQUIPPED;
     }
@@ -267,14 +253,6 @@ public class Player {
 
   public Enemy findNearestEnemy() {
     return currentRoom.getListOfEnemies().get(0);
-  }
-
-  public boolean doesCurrentRoomHaveEnemy() {
-    if (currentRoom.getListOfEnemies().isEmpty()) {
-      return false;
-    } else {
-      return true;
-    }
   }
 
   public void takeDamage(int damage) {
